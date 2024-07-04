@@ -24,7 +24,7 @@ export default function MortgageCalculatorComponent() {
   const [didCalculate, setDidCalculate] = useState(Boolean);
   const [monthlyPayment, setMothlyPayment] = useState(0);
   const [totalMortgageFigure, setTotalMortgageFigure] = useState(0);
-  const [resetForm, setResetForm] = useState(Boolean)
+  const [resetForm, setResetForm] = useState(Boolean);
 
   useEffect(() => {
     setMortgageAmount(0);
@@ -34,9 +34,8 @@ export default function MortgageCalculatorComponent() {
     setMothlyPayment(0);
     setTotalMortgageFigure(0);
     setDidCalculate(false);
-    setResetForm(false)
+    setResetForm(false);
   }, []);
-
 
   const getMortgageAmount = (num: number) => {
     setMortgageAmount(num);
@@ -61,7 +60,7 @@ export default function MortgageCalculatorComponent() {
   const validateUserInput = (e) => {
     e.preventDefault();
 
-    let formErrors = {} as FormErrors
+    let formErrors = {} as FormErrors;
 
     if (!mortgageAmount) {
       formErrors.amount = "Mortgage amount is required";
@@ -83,42 +82,39 @@ export default function MortgageCalculatorComponent() {
 
     if (Object.keys(formErrors).length === 0) {
       setDidCalculate(true);
-      calculateMortgagePayment()
+      calculateMortgagePayment();
     } else {
       setDidCalculate(false);
-    };
+    }
   };
   // Calculate payment based on the information provided in input fields.
   const calculateMortgagePayment = () => {
+    let mortgageMonthylPayment;
+    let mortgageTotalRepaid;
 
-      let mortgageMonthylPayment;
-      let mortgageTotalRepaid;
+    const monthlyInterestRate = mortgageInterestRate / 1200;
+    const totalPayments = mortgageTerm * 12;
 
-      const monthlyInterestRate = mortgageInterestRate / 1200;
-      const totalPayments = mortgageTerm * 12;
+    if (mortgageRepaymentType === "interestOnly") {
+      // Interest-only payment formula
+      mortgageMonthylPayment = mortgageAmount * monthlyInterestRate;
+      setMonthlyPayment(mortgageMonthylPayment);
+    } else {
+      // Regular mortgage payment formula
+      mortgageMonthylPayment =
+        (mortgageAmount * monthlyInterestRate) /
+        (1 - Math.pow(1 + monthlyInterestRate, -totalPayments));
+      setMonthlyPayment(mortgageMonthylPayment);
+    }
+    mortgageTotalRepaid = mortgageMonthylPayment * totalPayments;
+    setMortgageTotalAmount(mortgageTotalRepaid);
 
-      if (mortgageRepaymentType === "interestOnly") {
-        // Interest-only payment formula
-        mortgageMonthylPayment = mortgageAmount * monthlyInterestRate;
-        setMonthlyPayment(mortgageMonthylPayment);
-      } else {
-        // Regular mortgage payment formula
-        mortgageMonthylPayment =
-          (mortgageAmount * monthlyInterestRate) /
-          (1 - Math.pow(1 + monthlyInterestRate, -totalPayments));
-        setMonthlyPayment(mortgageMonthylPayment);
-      }
-      mortgageTotalRepaid = mortgageMonthylPayment * totalPayments;
-      setMortgageTotalAmount(mortgageTotalRepaid);
-
-      setDidCalculate(true);
-    
+    setDidCalculate(true);
   };
-
 
   // Reset form
   const resetFormInputs = () => {
-    setResetForm(true)
+    setResetForm(true);
     setMortgageAmount(0);
     setMortgageTerm(0);
     setMortgageInterestRate(0);
@@ -128,14 +124,35 @@ export default function MortgageCalculatorComponent() {
     setDidCalculate(false);
     setErrors({});
 
-    setTimeout(() => {setResetForm(false)}, 1000)
-  }
+    setTimeout(() => {
+      setResetForm(false);
+    }, 1000);
+  };
 
   return (
-    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:rounded-3xl md:h-5/6">
-      <MortgageCalculatorColumn bgcolour="bg-white" textcolour="text-black" columnheight="h-auto">
-        <CalculatorColumnTitle columnTitle="Mortgage Calculator" textalaignment="text-start"/>
-        <CalculatorColumnDescription textalignment="text-start"><a className="font-bold border-b-2 border-almost-light-blue text-almost-light-blue" onClick={() => {resetFormInputs()}}>Clear all</a></CalculatorColumnDescription>
+    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:auto">
+      <MortgageCalculatorColumn
+        bgcolour="bg-white"
+        textcolour="text-black"
+        columnheight="h-auto"
+        roundBorder="md:rounded-t-3xl"
+      >
+        <div className="justify-between columns-1 md:items-center md:columns-2 md:mt-4 md:flex">
+          <CalculatorColumnTitle
+            columnTitle="Mortgage Calculator"
+            textalaignment="text-start"
+          />
+          <CalculatorColumnDescription textalignment="text-start">
+            <a
+              className="font-bold border-b-2 border-almost-light-blue text-almost-light-blue"
+              onClick={() => {
+                resetFormInputs();
+              }}
+            >
+              Clear all
+            </a>
+          </CalculatorColumnDescription>
+        </div>
 
         <CalculatorForm
           getMortgageAmount={getMortgageAmount}
@@ -149,7 +166,12 @@ export default function MortgageCalculatorComponent() {
         />
       </MortgageCalculatorColumn>
 
-      <MortgageCalculatorColumn bgcolour="bg-dark-blue" textcolour="text-white" columnheight="">
+      <MortgageCalculatorColumn
+        bgcolour="bg-dark-blue"
+        textcolour="text-white"
+        columnheight="h-auto"
+        roundBorder="md:rounded-b-3xl"
+      >
         <CalculatorColumnDescription textalignment="text-center">
           <CalculatorOutput
             monthlyPayment={monthlyPayment}

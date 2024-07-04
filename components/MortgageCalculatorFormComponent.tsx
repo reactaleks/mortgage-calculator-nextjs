@@ -27,17 +27,20 @@ export default function CalculatorForm({
       name="mortgageCalculatorForm"
       className="pl-5 pr-5"
     >
-      <CalculatorFormInput
-        formInputLabel="Mortgage Amount"
-        formInputPlaceholder="£"
-        formInputType="number"
-        getInputFieldValue={getMortgageAmount}
-        inputFieldMax={9999999999}
-        inputFieldStep={1}
-        formError={formErrors.amount}
-        placeholderPosition="left"
-      />
-      <div className="md:columns-2">
+      <div className="md:mt-5">
+        <CalculatorFormInput
+          formInputLabel="Mortgage Amount"
+          formInputPlaceholder="£"
+          formInputType="number"
+          getInputFieldValue={getMortgageAmount}
+          inputFieldMax={9999999999}
+          inputFieldStep={1}
+          formError={formErrors.amount}
+          placeholderPosition="left"
+        />
+      </div>
+
+      <div className="md:columns-2 md:items-center md:mt-5">
         <CalculatorFormInput
           formInputLabel="Mortgage Term"
           formInputPlaceholder="years"
@@ -62,11 +65,13 @@ export default function CalculatorForm({
       </div>
 
       <>
-        <fieldset className="mt-7">
-          <legend className="font-semibold text-blue-900">Mortgage Type</legend>
+        <fieldset className="mt-7 md:mt-5">
+          <legend className="font-semibold text-almost-light-blue">
+            Mortgage Type
+          </legend>
           <div>
             <div
-              className={`h-14 pl-5 border flex justify-start rounded-md mt-2       ${
+              className={`h-14 pl-5 border flex justify-start rounded-md mt-2 md:h-12      ${
                 repaymentSelected === "repayment"
                   ? "border-dark-yellow bg-light-yellow"
                   : "border-almost-light-blue bg-white"
@@ -92,7 +97,7 @@ export default function CalculatorForm({
               </div>
             </div>
             <div
-              className={`h-14 pl-5 border flex justify-start rounded-md mt-2     ${
+              className={`h-14 pl-5 border flex justify-start rounded-md mt-2 md:h-12      ${
                 repaymentSelected === "interestOnly"
                   ? "border-dark-yellow bg-light-yellow"
                   : "border-almost-light-blue bg-white"
@@ -125,18 +130,22 @@ export default function CalculatorForm({
           </p>
         </fieldset>
       </>
-
-      <button
-        className="flex items-center justify-center w-full m-auto mt-5 rounded-full mb-7 calculator-submit-button text-dark-blue bg-dark-yellow h-14"
-        type="submit"
-      >
-        <div className="flex">
-          <div className="mr-5 div">
-            <Image src={calculatorButtonImage} alt="calculator button image" />
+      <div className="md:mt-6 md:mb-10">
+        <button
+          className="flex items-center justify-center w-full m-auto mt-5 rounded-full md:ml-0 mb-7 calculator-submit-button text-dark-blue bg-dark-yellow h-14 md:w-6/12 "
+          type="submit"
+        >
+          <div className="flex">
+            <div className="mr-5 div">
+              <Image
+                src={calculatorButtonImage}
+                alt="calculator button image"
+              />
+            </div>
+            <div className="font-extrabold div"> Calculate Repayments</div>
           </div>
-          <div className="font-extrabold div"> Calculate Repayments</div>
-        </div>
-      </button>
+        </button>
+      </div>
     </form>
   );
 }
