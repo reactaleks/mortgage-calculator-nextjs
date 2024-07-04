@@ -1,17 +1,27 @@
 import CalculatorFormInput from "./MortgageCalculatorFormInputComponent";
 import Image from "next/image";
 import calculatorButtonImage from "../public/icon-calculator.svg";
+import { useRef } from "react";
 
 export default function CalculatorForm(
   {getMortgageAmount,
   getMortgageTerm,
   getMortgageRate,
   setRepaymentType,
-  calculateMortgagePayment
+  validateForm,
+  formErrors,
+  clearForm
 }
 ) {
+
+  const formRef = useRef(null)
+
+  if(clearForm) {
+    formRef.current.reset()
+  }
+
   return (
-    <form>
+    <form onSubmit={validateForm} id="mortgage-calculator-form" ref={formRef} name="mortgageCalculatorForm">
       <CalculatorFormInput
         formInputLabel="Mortgage Amount"
         formInputPlaceholder="£"
@@ -19,7 +29,9 @@ export default function CalculatorForm(
         getInputFieldValue={getMortgageAmount}
         inputFieldMax={9999999999}
         inputFieldStep={1}
+        formError={formErrors.amount}
       />
+
       <CalculatorFormInput
         formInputLabel="Mortgage Term"
         formInputPlaceholder="years"
@@ -27,7 +39,9 @@ export default function CalculatorForm(
         getInputFieldValue={getMortgageTerm}
         inputFieldMax={25}
         inputFieldStep={1}
+        formError={formErrors.term}
       />
+
       <CalculatorFormInput
         formInputLabel="Interest Rate"
         formInputPlaceholder="%"
@@ -35,22 +49,23 @@ export default function CalculatorForm(
         getInputFieldValue={getMortgageRate}
         inputFieldMax={99}
         inputFieldStep={0.1}
+        formError={formErrors.interest}
       />
 
+
+      <>
       <fieldset>
         <legend>Mortgage Type</legend>
-        <>
+        
           <input
             type="radio"
             id="repayment"
             name="mortgageType"
             value="repayment"
             onChange={setRepaymentType}
-            defaultChecked
           />
           <label htmlFor="repayment">Repayment</label>
-        </>
-        <>
+        
           <input
             type="radio"
             id="interestOnly"
@@ -59,10 +74,14 @@ export default function CalculatorForm(
             onChange={setRepaymentType}
           />
           <label htmlFor="interestOnly">Interest Only</label>
-        </>
-      </fieldset>
 
-      <button className="calculator-submit-button" type="submit" onClick={(calculateMortgagePayment)}>
+          <p>{formErrors.repaymentType}</p> 
+
+      </fieldset>
+      </>
+
+
+      <button className="calculator-submit-button" type="submit">
    
         <Image src={calculatorButtonImage} alt="calculator button image" />
         Calculate Repayments
