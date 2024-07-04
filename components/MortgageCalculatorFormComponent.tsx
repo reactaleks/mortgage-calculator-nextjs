@@ -12,13 +12,12 @@ export default function CalculatorForm({
   formErrors,
   clearForm,
   repaymentSelected,
-  
 }) {
   const formRef = useRef(null);
 
   if (clearForm) {
     formRef.current.reset();
-  } 
+  }
 
   return (
     <form
@@ -26,7 +25,7 @@ export default function CalculatorForm({
       id="mortgage-calculator-form"
       ref={formRef}
       name="mortgageCalculatorForm"
-      className="pr-5 pl-5"
+      className="pl-5 pr-5"
     >
       <CalculatorFormInput
         formInputLabel="Mortgage Amount"
@@ -36,38 +35,42 @@ export default function CalculatorForm({
         inputFieldMax={9999999999}
         inputFieldStep={1}
         formError={formErrors.amount}
+        placeholderPosition="left"
       />
+      <div className="md:columns-2">
+        <CalculatorFormInput
+          formInputLabel="Mortgage Term"
+          formInputPlaceholder="years"
+          formInputType="number"
+          getInputFieldValue={getMortgageTerm}
+          inputFieldMax={25}
+          inputFieldStep={1}
+          formError={formErrors.term}
+          placeholderPosition="right"
+        />
 
-      <CalculatorFormInput
-        formInputLabel="Mortgage Term"
-        formInputPlaceholder="years"
-        formInputType="number"
-        getInputFieldValue={getMortgageTerm}
-        inputFieldMax={25}
-        inputFieldStep={1}
-        formError={formErrors.term}
-      />
-
-      <CalculatorFormInput
-        formInputLabel="Interest Rate"
-        formInputPlaceholder="%"
-        formInputType="number"
-        getInputFieldValue={getMortgageRate}
-        inputFieldMax={99}
-        inputFieldStep={0.1}
-        formError={formErrors.interest}
-      />
+        <CalculatorFormInput
+          formInputLabel="Interest Rate"
+          formInputPlaceholder="%"
+          formInputType="number"
+          getInputFieldValue={getMortgageRate}
+          inputFieldMax={99}
+          inputFieldStep={0.1}
+          formError={formErrors.interest}
+          placeholderPosition="right"
+        />
+      </div>
 
       <>
         <fieldset className="mt-7">
-          <legend className="text-blue-900 font-semibold">Mortgage Type</legend>
+          <legend className="font-semibold text-blue-900">Mortgage Type</legend>
           <div>
             <div
-              className={`h-14 pl-5 border flex justify-start rounded-sm mt-2       ${
+              className={`h-14 pl-5 border flex justify-start rounded-md mt-2       ${
                 repaymentSelected === "repayment"
-                  ? "border-yellow-300 bg-yellow-50"
-                  : " border-blue-900 bg-white"
-              } 
+                  ? "border-dark-yellow bg-light-yellow"
+                  : "border-almost-light-blue bg-white"
+              }
 `}
             >
               <input
@@ -76,17 +79,23 @@ export default function CalculatorForm({
                 name="mortgageType"
                 value="repayment"
                 onClick={setRepaymentType}
-                
+                className={`${
+                  repaymentSelected === "repayment"
+                    ? "accent-dark-yellow "
+                    : "accent-white"
+                }`}
               />
-              <label className="font-bold" htmlFor="repayment">
-                Repayment
-              </label>
+              <div className="content-center pl-5">
+                <label className="font-bold" htmlFor="repayment">
+                  Repayment
+                </label>
+              </div>
             </div>
             <div
-              className={`h-14 pl-5 border flex justify-start rounded-sm mt-2       ${
+              className={`h-14 pl-5 border flex justify-start rounded-md mt-2     ${
                 repaymentSelected === "interestOnly"
-                  ? "border-yellow-300 bg-yellow-50"
-                  : " border-blue-900 bg-white"
+                  ? "border-dark-yellow bg-light-yellow"
+                  : "border-almost-light-blue bg-white"
               }   
 `}
             >
@@ -96,25 +105,36 @@ export default function CalculatorForm({
                 name="mortgageType"
                 value="interestOnly"
                 onClick={setRepaymentType}
+                className={`               
+                  ${
+                    repaymentSelected === "interestOnly"
+                      ? "accent-dark-yellow "
+                      : "accent-white"
+                  } outline-8`}
               />
-             
-              <label className="flex align-middle font-bold " htmlFor="interestOnly">
-                Interest Only
-              </label>
+              <div className="content-center pl-5">
+                <label className="font-bold" htmlFor="interestOnly">
+                  Interest Only
+                </label>
+              </div>
             </div>
           </div>
 
-          <p className="text-red-500">{formErrors.repaymentType}</p>
+          <p className="mt-2 text-sm font-semibold text-error-red">
+            {formErrors.repaymentType}
+          </p>
         </fieldset>
       </>
 
       <button
-        className="mt-5 mb-7 calculator-submit-button flex justify-center items-center rounded-2xl bg-yellow-200 m-auto h-12 w-full"
+        className="flex items-center justify-center w-full m-auto mt-5 rounded-full mb-7 calculator-submit-button text-dark-blue bg-dark-yellow h-14"
         type="submit"
       >
         <div className="flex">
-          <Image src={calculatorButtonImage} alt="calculator button image" />
-          Calculate Repayments
+          <div className="mr-5 div">
+            <Image src={calculatorButtonImage} alt="calculator button image" />
+          </div>
+          <div className="font-extrabold div"> Calculate Repayments</div>
         </div>
       </button>
     </form>

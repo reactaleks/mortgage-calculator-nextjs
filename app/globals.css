@@ -2,3 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    @font-face {
+        font-family: 'Plus Jakarta Sans ExtraLight';
+        src: url(../public/PlusJakartaSans-VariableFont_wght.ttf);
+    }
+}
+
+body, main {
+    min-height: 100vh;
+}

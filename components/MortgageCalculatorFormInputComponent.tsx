@@ -6,18 +6,22 @@ export default function CalculatorFormInput({
   inputFieldMax,
   inputFieldStep,
   formError,
+  placeholderPosition
 }) {
   const handleInputFieldChange = (e) => {
     getInputFieldValue(Number(e.target.value));
   };
 
   return (
-    <div className="calculator-form-input flex flex-col mt-4">
-      <label className="text-blue-900 font-semibold mt-2" htmlFor={formInputLabel}>{formInputLabel}</label>
+    <div className="flex flex-col mt-4 calculator-form-input md:mt-1">
+      <label className="mt-2 font-semibold text-almost-light-blue md:mt-0" htmlFor={formInputLabel}>{formInputLabel}</label>
 
-      <div className="relative mt-2">
+      <div className="relative mt-2 md:mt-1">
         <input
-          className={`pl-5 h-14 pr-4 py-2 rounded-md border-2 w-full ${formError ? "border-red-500" : "border-blue-900 bg-white"}`}
+          className={`
+            ${placeholderPosition === "right" ? "pl-5 pr-5" : "pl-16 pr-5" }
+            focus:outline-none focus:border-dark-blue  h-14 md:h-10  text-dark-blue font-bold py-2 rounded-md border-2 w-full ${formError ? "border-error-red" : "border-almost-light-blue bg-white"}
+            `}
           onChange={handleInputFieldChange}
           type={formInputType}
           id={formInputLabel}
@@ -28,14 +32,20 @@ export default function CalculatorFormInput({
         />
 
         <div
-          className={`placeholder w-24 inset-y-0.5 right-0.5 pr-3  
-                    flex items-center justify-center rounded-r-md  
-                    pointer-events-none absolute text-blue-900 border-l-2 font-semibold ${formError ? "border-red-500 bg-red-500 text-white" : "border-b-blue-900 bg-cyan-100"}`}>
+          className={`
+                    ${placeholderPosition === "right" ? "right-0.5 rounded-r-sm md:right-0.5" : "left-0.5 rounded-l-sm md:left-0.5"}
+                    placeholder w-auto p-5 inset-y-0.5   
+                    flex items-center justify-center  
+                    md:h-4 md:rounded-sm md:p-4 md:border-y-2 md:border-light-blue
+                    pointer-events-none absolute  text-almost-light-blue font-semibold 
+                    ${formError ? "bg-error-red text-white" : "border-b-almost-light-blue bg-light-blue"}
+                    
+                    `}>
           {formInputPlaceholder}
         </div>
       </div>
 
-      <p className="text-red-500">{formError}</p>
+      <p className="mt-2 text-sm font-semibold text-error-red md:mt-1" >{formError}</p>
 
     </div>
   );

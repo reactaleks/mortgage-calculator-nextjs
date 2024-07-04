@@ -9,7 +9,26 @@ module.exports = {
     './src/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Plus Jakarta Sans ExtraLight", "sans-serif"]
+      },
+    
+    },
+    colors: {
+      'dark-blue': '#132E35',
+      'darker-blue': '#0E2431',
+      'almost-light-blue': '#808B92',
+      'almost-white-blue': '#9EBACF',
+      'light-blue': '#E3F4FC',
+      'white-main': '#F5FDFD',
+      'bright-yellow': '#DDDD2E',
+      'dark-yellow': '#D9DB30',
+      'light-yellow': '#FAFAE0',
+      'white': '#FFFFFF',
+      'error-red': '#D73329',
+      'transparent': 'transparent',
+    }
   },
   plugins: [],
 }

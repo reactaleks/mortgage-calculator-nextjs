@@ -132,10 +132,10 @@ export default function MortgageCalculatorComponent() {
   }
 
   return (
-    <div className="mortgage-calculator-component flex flex-col">
+    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:rounded-3xl md:h-5/6">
       <MortgageCalculatorColumn bgcolour="bg-white" textcolour="text-black" columnheight="h-auto">
         <CalculatorColumnTitle columnTitle="Mortgage Calculator" textalaignment="text-start"/>
-        <CalculatorColumnDescription textalignment="text-start"><a className="underline" onClick={() => {resetFormInputs()}}>Clear all</a></CalculatorColumnDescription>
+        <CalculatorColumnDescription textalignment="text-start"><a className="font-bold border-b-2 border-almost-light-blue text-almost-light-blue" onClick={() => {resetFormInputs()}}>Clear all</a></CalculatorColumnDescription>
 
         <CalculatorForm
           getMortgageAmount={getMortgageAmount}
@@ -149,7 +149,7 @@ export default function MortgageCalculatorComponent() {
         />
       </MortgageCalculatorColumn>
 
-      <MortgageCalculatorColumn bgcolour="bg-cyan-900" textcolour="text-white" columnheight="">
+      <MortgageCalculatorColumn bgcolour="bg-dark-blue" textcolour="text-white" columnheight="">
         <CalculatorColumnDescription textalignment="text-center">
           <CalculatorOutput
             monthlyPayment={monthlyPayment}
