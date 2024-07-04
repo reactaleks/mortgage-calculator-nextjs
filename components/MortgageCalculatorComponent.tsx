@@ -118,7 +118,7 @@ export default function MortgageCalculatorComponent() {
 
   // Reset form
   const resetFormInputs = () => {
-    setResetForm(!resetForm)
+    setResetForm(true)
     setMortgageAmount(0);
     setMortgageTerm(0);
     setMortgageInterestRate(0);
@@ -126,13 +126,16 @@ export default function MortgageCalculatorComponent() {
     setMothlyPayment(0);
     setTotalMortgageFigure(0);
     setDidCalculate(false);
+    setErrors({});
+
+    setTimeout(() => {setResetForm(false)}, 1000)
   }
 
   return (
-    <div className="mortgage-calculator-component">
-      <MortgageCalculatorColumn>
-        <CalculatorColumnTitle columnTitle="Mortgage Calculator" />
-        <CalculatorColumnDescription><a onClick={() => {resetFormInputs()}}>Clear all</a></CalculatorColumnDescription>
+    <div className="mortgage-calculator-component flex flex-col">
+      <MortgageCalculatorColumn bgcolour="bg-white" textcolour="text-black" columnheight="h-auto">
+        <CalculatorColumnTitle columnTitle="Mortgage Calculator" textalaignment="text-start"/>
+        <CalculatorColumnDescription textalignment="text-start"><a className="underline" onClick={() => {resetFormInputs()}}>Clear all</a></CalculatorColumnDescription>
 
         <CalculatorForm
           getMortgageAmount={getMortgageAmount}
@@ -142,12 +145,13 @@ export default function MortgageCalculatorComponent() {
           validateForm={validateUserInput}
           formErrors={errors}
           clearForm={resetForm}
+          repaymentSelected={mortgageRepaymentType}
         />
       </MortgageCalculatorColumn>
 
-      <MortgageCalculatorColumn>
-        <CalculatorColumnTitle columnTitle="Your results" />
-        <CalculatorColumnDescription>
+      <MortgageCalculatorColumn bgcolour="bg-cyan-950" textcolour="text-white" columnheight="">
+        <CalculatorColumnTitle columnTitle="Your results" textalaignment="text-center"/>
+        <CalculatorColumnDescription textalignment="text-center">
           <CalculatorOutput
             monthlyPayment={monthlyPayment}
             totalMortgageRepaid={totalMortgageFigure}

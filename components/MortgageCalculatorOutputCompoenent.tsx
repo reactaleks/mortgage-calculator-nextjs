@@ -9,20 +9,34 @@ export default function CalculatorOutput({
 }) {
   if (didCalculate) {
     return (
-      <>
-        Your results are shown below based on the information you provided. To
-        adjust the results, edit the form and click &quot;calculate
-        repayments&quot; again.
-        <CalculatorOutputField val={monthlyPayment} />
-        <CalculatorOutputField val={totalMortgageRepaid} />
-      </>
+      <div className="flex flex-col justify-center align-middle items-center p-5">
+        <div className="">
+          <p>
+            Your results are shown below based on the information you provided.
+            To adjust the results, edit the form and click &quot;calculate
+            repayments&quot; again.
+          </p>
+        </div>
+
+        <div className="h-48">
+          <CalculatorOutputField val={monthlyPayment} />
+          <CalculatorOutputField val={totalMortgageRepaid} />
+        </div>
+      </div>
     );
   } else {
     return (
-    <>
-        <Image src={emptyCalculatorImage} alt="Calculator is empty and will show results when provided with values"/>
+      <div className="flex flex-col justify-center items-center p-5 h-auto">
+        <Image
+          src={emptyCalculatorImage}
+          alt="Calculator is empty and will show results when provided with values"
+        />
         <h3>Results shown here</h3>
-        <p>Complete the form and click &quot;calculate repayments&quot; to see what your monthly repayments would be.</p>
-    </>);
+        <p>
+          Complete the form and click &quot;calculate repayments&quot; to see
+          what your monthly repayments would be.
+        </p>
+      </div>
+    );
   }
 }
