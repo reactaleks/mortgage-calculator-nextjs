@@ -149,8 +149,7 @@ export default function MortgageCalculatorComponent() {
         />
       </MortgageCalculatorColumn>
 
-      <MortgageCalculatorColumn bgcolour="bg-cyan-950" textcolour="text-white" columnheight="">
-        <CalculatorColumnTitle columnTitle="Your results" textalaignment="text-center"/>
+      <MortgageCalculatorColumn bgcolour="bg-cyan-900" textcolour="text-white" columnheight="">
         <CalculatorColumnDescription textalignment="text-center">
           <CalculatorOutput
             monthlyPayment={monthlyPayment}

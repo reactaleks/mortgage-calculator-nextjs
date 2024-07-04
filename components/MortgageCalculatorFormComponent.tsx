@@ -63,7 +63,7 @@ export default function CalculatorForm({
           <legend className="text-blue-900 font-semibold">Mortgage Type</legend>
           <div>
             <div
-              className={`pl-5 border flex justify-start rounded-sm mt-2       ${
+              className={`h-14 pl-5 border flex justify-start rounded-sm mt-2       ${
                 repaymentSelected === "repayment"
                   ? "border-yellow-300 bg-yellow-50"
                   : " border-blue-900 bg-white"
@@ -78,12 +78,12 @@ export default function CalculatorForm({
                 onClick={setRepaymentType}
                 
               />
-              <label className="p-5 font-bold" htmlFor="repayment">
+              <label className="font-bold" htmlFor="repayment">
                 Repayment
               </label>
             </div>
             <div
-              className={`x pl-5 border flex justify-start rounded-sm mt-2       ${
+              className={`h-14 pl-5 border flex justify-start rounded-sm mt-2       ${
                 repaymentSelected === "interestOnly"
                   ? "border-yellow-300 bg-yellow-50"
                   : " border-blue-900 bg-white"
@@ -97,7 +97,8 @@ export default function CalculatorForm({
                 value="interestOnly"
                 onClick={setRepaymentType}
               />
-              <label className="p-5 font-bold" htmlFor="interestOnly">
+             
+              <label className="flex align-middle font-bold " htmlFor="interestOnly">
                 Interest Only
               </label>
             </div>
