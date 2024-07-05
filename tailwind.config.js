@@ -13,6 +13,9 @@ module.exports = {
       fontFamily: {
         sans: ["Plus Jakarta Sans ExtraLight", "sans-serif"]
       },
+      borderRadius: {
+        'special': '25%',
+      }
     
     },
     colors: {

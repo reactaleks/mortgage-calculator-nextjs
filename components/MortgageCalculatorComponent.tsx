@@ -130,56 +130,61 @@ export default function MortgageCalculatorComponent() {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:auto">
-      <MortgageCalculatorColumn
-        bgcolour="bg-white"
-        textcolour="text-black"
-        columnheight="h-auto"
-        roundBorder="md:rounded-t-3xl"
-      >
-        <div className="justify-between columns-1 md:items-center md:columns-2 md:mt-4 md:flex">
-          <CalculatorColumnTitle
-            columnTitle="Mortgage Calculator"
-            textalaignment="text-start"
-          />
-          <CalculatorColumnDescription textalignment="text-start">
-            <a
-              className="font-bold border-b-2 border-almost-light-blue text-almost-light-blue"
-              onClick={() => {
-                resetFormInputs();
-              }}
-            >
-              Clear all
-            </a>
-          </CalculatorColumnDescription>
+    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:auto lg:w-9/12 xl:w-6/12">
+      <div className="grid-cols-2 gap-0 lg:grid lg:grid-cols-2">
+        <div className="">
+          <MortgageCalculatorColumn
+            bgcolour="bg-white"
+            textcolour="text-black"
+            columnheight="h-auto"
+            roundBorder="md:rounded-t-3xl lg:rounded-l-3xl lg:rounded-r-none"
+          >
+            <div className="justify-between md:items-center md:grid-cols-2 md:grid md:mt-4 lg:mt-0">
+              <CalculatorColumnTitle
+                columnTitle="Mortgage Calculator"
+                textalaignment="text-start"
+              />
+              <CalculatorColumnDescription textalignment="text-start md:text-right">
+                <a
+                  className="font-bold border-b-2 border-almost-light-blue text-almost-light-blue"
+                  onClick={() => {
+                    resetFormInputs();
+                  }}
+                >
+                  Clear all
+                </a>
+              </CalculatorColumnDescription>
+            </div>
+
+            <CalculatorForm
+              getMortgageAmount={getMortgageAmount}
+              getMortgageTerm={getMortgageTerm}
+              getMortgageRate={getMortgageRate}
+              setRepaymentType={setRepaymentType}
+              validateForm={validateUserInput}
+              formErrors={errors}
+              clearForm={resetForm}
+              repaymentSelected={mortgageRepaymentType}
+            />
+          </MortgageCalculatorColumn>
         </div>
-
-        <CalculatorForm
-          getMortgageAmount={getMortgageAmount}
-          getMortgageTerm={getMortgageTerm}
-          getMortgageRate={getMortgageRate}
-          setRepaymentType={setRepaymentType}
-          validateForm={validateUserInput}
-          formErrors={errors}
-          clearForm={resetForm}
-          repaymentSelected={mortgageRepaymentType}
-        />
-      </MortgageCalculatorColumn>
-
-      <MortgageCalculatorColumn
-        bgcolour="bg-dark-blue"
-        textcolour="text-white"
-        columnheight="h-auto"
-        roundBorder="md:rounded-b-3xl"
-      >
-        <CalculatorColumnDescription textalignment="text-center">
-          <CalculatorOutput
-            monthlyPayment={monthlyPayment}
-            totalMortgageRepaid={totalMortgageFigure}
-            didCalculate={didCalculate}
-          />
-        </CalculatorColumnDescription>
-      </MortgageCalculatorColumn>
+        <div className="lg:bg-white">
+          <MortgageCalculatorColumn
+            bgcolour="bg-dark-blue"
+            textcolour="text-white"
+            columnheight="h-auto"
+            roundBorder="md:rounded-b-3xl lg:rounded-r-3xl lg:rounded-tl-none lg:rounded-bl-special lg:content-start lg:pt-5"
+          >
+            <CalculatorColumnDescription textalignment="text-center">
+              <CalculatorOutput
+                monthlyPayment={monthlyPayment}
+                totalMortgageRepaid={totalMortgageFigure}
+                didCalculate={didCalculate}
+              />
+            </CalculatorColumnDescription>
+          </MortgageCalculatorColumn>
+        </div>
+      </div>
     </div>
   );
 }

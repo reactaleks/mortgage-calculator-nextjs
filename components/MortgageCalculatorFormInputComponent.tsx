@@ -36,7 +36,6 @@ export default function CalculatorFormInput({
                     ${placeholderPosition === "right" ? "right-0.5 rounded-r-sm md:right-0.5" : "left-0.5 rounded-l-sm md:left-0.5"}
                     placeholder w-auto p-5 inset-y-0.5   
                     flex items-center justify-center  
-                    md:rounded-sm md:p-5 md:border-y-2 md:border-light-blue
                     pointer-events-none absolute  text-almost-light-blue font-semibold 
                     ${formError ? "bg-error-red text-white" : "border-b-almost-light-blue bg-light-blue"}
                     

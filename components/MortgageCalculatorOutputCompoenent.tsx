@@ -9,12 +9,12 @@ export default function CalculatorOutput({
 }) {
   if (didCalculate) {
     return (
-      <div className="flex flex-col items-center justify-center h-auto py-10 text-white-main">
+      <div className="flex flex-col items-center justify-center h-auto py-10 text-white-main lg:py-0">
         <div className="w-full mb-5 ">
-          <h3 className="text-3xl text-left text-white">Your results</h3>
+          <h3 className="text-3xl text-left text-white lg:text-2xl">Your results</h3>
         </div>
         <div className="">
-          <p className="text-lg text-left text-almost-white-blue">
+          <p className="text-lg text-left text-almost-white-blue lg:text-base">
             Your results are shown below based on the information you provided.
             To adjust the results, edit the form and click &quot;calculate
             repayments&quot; again.

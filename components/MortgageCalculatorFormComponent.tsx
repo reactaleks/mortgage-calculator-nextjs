@@ -40,7 +40,7 @@ export default function CalculatorForm({
         />
       </div>
 
-      <div className="md:columns-2 md:items-center md:mt-5">
+      <div className="md:grid md:grid-cols-2 md:gap-4 md:items-center md:mt-5">
         <CalculatorFormInput
           formInputLabel="Mortgage Term"
           formInputPlaceholder="years"
@@ -130,19 +130,19 @@ export default function CalculatorForm({
           </p>
         </fieldset>
       </>
-      <div className="md:mt-6 md:mb-10">
+      <div className="pb-10 md:mt-6">
         <button
-          className="flex items-center justify-center w-full m-auto mt-5 rounded-full md:ml-0 mb-7 calculator-submit-button text-dark-blue bg-dark-yellow h-14 md:w-6/12 "
+          className="flex items-center justify-center w-full m-auto mt-5 rounded-full md:ml-0 calculator-submit-button text-dark-blue bg-dark-yellow h-14 md:w-6/12 lg:w-8/12"
           type="submit"
         >
           <div className="flex">
-            <div className="mr-5 div">
+            <div className="mr-5 lg:mr-0 div">
               <Image
                 src={calculatorButtonImage}
                 alt="calculator button image"
               />
             </div>
-            <div className="font-extrabold div"> Calculate Repayments</div>
+            <div className="font-extrabold"> Calculate Repayments</div>
           </div>
         </button>
       </div>
