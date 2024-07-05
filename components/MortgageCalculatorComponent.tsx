@@ -130,7 +130,7 @@ export default function MortgageCalculatorComponent() {
   };
 
   return (
-    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:auto lg:w-9/12 xl:w-6/12">
+    <div className="flex flex-col overflow-hidden mortgage-calculator-component md:w-11/12 md:m-auto md:auto xl:w-8/12">
       <div className="grid-cols-2 gap-0 lg:grid lg:grid-cols-2">
         <div className="">
           <MortgageCalculatorColumn
