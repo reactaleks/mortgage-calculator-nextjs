@@ -9,3 +9,4 @@
 # Project tech stack
 - NextJS
 - TailwindCSS
+- Typescript
