@@ -58,7 +58,7 @@ export default function CalculatorForm({
           formInputType="number"
           getInputFieldValue={getMortgageRate}
           inputFieldMax={99}
-          inputFieldStep={0.1}
+          inputFieldStep={0.01}
           formError={formErrors.interest}
           placeholderPosition="right"
         />
