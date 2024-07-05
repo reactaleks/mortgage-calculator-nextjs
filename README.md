@@ -5,3 +5,7 @@
 
 # Project outcome
 - Learned basics of NextJS, Responsive desing, TailwindCSS etc.
+
+# Project tech stack
+- NextJS
+- TailwindCSS
